@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianwenad.storage.sys.RoleRepository" >
+  <resultMap id="BaseResultMap" type="com.qianwenad.model.sys.Role" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="cn_name" property="cnName" jdbcType="VARCHAR" />
+    <result column="en_name" property="enName" jdbcType="VARCHAR" />
+    <result column="role_code" property="roleCode" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+ <sql id="Base_Column_List" >
+   `id`,
+   `cn_name`,
+   `en_name`,
+   `role_code`,
+   `status`,
+   `remark`,
+   `created_by`,
+   `create_time`,
+   `last_updated_by`,
+   `update_time`
+ </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_role
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id"   parameterType="com.qianwenad.model.sys.Role" >
+    insert into sys_role ( 
+     `id`,
+     `cn_name`,
+     `en_name`,
+     `role_code`,
+     `status`,
+     `remark`,
+     `created_by`,
+     `create_time`,
+     `last_updated_by`,
+     `update_time`
+    )
+    values (
+     #{id,jdbcType=BIGINT},
+     #{cnName,jdbcType=VARCHAR},
+     #{enName,jdbcType=VARCHAR},
+     #{roleCode,jdbcType=VARCHAR},
+     #{status,jdbcType=INTEGER},
+     #{remark,jdbcType=VARCHAR},
+     #{createdBy,jdbcType=BIGINT},
+     #{createTime,jdbcType=TIMESTAMP},
+     #{lastUpdatedBy,jdbcType=BIGINT},
+     #{updateTime,jdbcType=TIMESTAMP}
+ )
+  </insert>
+  
+  
+  
+  <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="id"  parameterType="com.qianwenad.model.sys.Role" >
+    insert into sys_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        `id`,
+      </if>
+      <if test="cnName != null" >
+        `cn_name`,
+      </if>
+      <if test="enName != null" >
+        `en_name`,
+      </if>
+      <if test="roleCode != null" >
+        `role_code`,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="remark != null" >
+        `remark`,
+      </if>
+      <if test="createdBy != null" >
+        `created_by`,
+      </if>
+      <if test="createTime != null" >
+        `create_time`,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        `last_updated_by`,
+      </if>
+      <if test="updateTime != null" >
+        `update_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cnName != null" >
+        #{cnName,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null" >
+        #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCode != null" >
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianwenad.model.sys.Role" >
+    update sys_role
+	  <set>
+       <if test="cnName != null" >
+        `cn_name`= #{cnName,jdbcType=VARCHAR},
+       </if>
+       <if test="enName != null" >
+        `en_name`= #{enName,jdbcType=VARCHAR},
+       </if>
+       <if test="roleCode != null" >
+        `role_code`= #{roleCode,jdbcType=VARCHAR},
+       </if>
+       <if test="status != null" >
+        `status`= #{status,jdbcType=INTEGER},
+       </if>
+       <if test="remark != null" >
+        `remark`= #{remark,jdbcType=VARCHAR},
+       </if>
+       <if test="createdBy != null" >
+        `created_by`= #{createdBy,jdbcType=BIGINT},
+       </if>
+       <if test="createTime != null" >
+        `create_time`= #{createTime,jdbcType=TIMESTAMP},
+       </if>
+       <if test="lastUpdatedBy != null" >
+        `last_updated_by`= #{lastUpdatedBy,jdbcType=BIGINT},
+       </if>
+       <if test="updateTime != null" >
+        `update_time`= #{updateTime,jdbcType=TIMESTAMP},
+       </if>
+          </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.qianwenad.model.sys.Role" >
+    update sys_role
+    set 
+       `cn_name` = #{cnName,jdbcType=VARCHAR},
+       `en_name` = #{enName,jdbcType=VARCHAR},
+       `role_code` = #{roleCode,jdbcType=VARCHAR},
+       `status` = #{status,jdbcType=INTEGER},
+       `remark` = #{remark,jdbcType=VARCHAR},
+       `created_by` = #{createdBy,jdbcType=BIGINT},
+       `create_time` = #{createTime,jdbcType=TIMESTAMP},
+       `last_updated_by` = #{lastUpdatedBy,jdbcType=BIGINT},
+       `update_time` = #{updateTime,jdbcType=TIMESTAMP}
+     where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+
+  
+  <select id="selectCount" resultType="java.lang.Integer" parameterType="com.qianwenad.model.sys.Role" >
+    select count(*) from sys_role
+    <where >
+            <if test="id != null" >
+        and `id` = #{id,jdbcType=BIGINT}
+      </if>
+            <if test="cnName != null" >
+        and `cn_name` = #{cnName,jdbcType=VARCHAR}
+      </if>
+            <if test="enName != null" >
+        and `en_name` = #{enName,jdbcType=VARCHAR}
+      </if>
+            <if test="roleCode != null" >
+        and `role_code` = #{roleCode,jdbcType=VARCHAR}
+      </if>
+            <if test="status != null" >
+        and `status` = #{status,jdbcType=INTEGER}
+      </if>
+            <if test="remark != null" >
+        and `remark` = #{remark,jdbcType=VARCHAR}
+      </if>
+            <if test="createdBy != null" >
+        and `created_by` = #{createdBy,jdbcType=BIGINT}
+      </if>
+            <if test="createTime != null" >
+        and `create_time` = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+            <if test="lastUpdatedBy != null" >
+        and `last_updated_by` = #{lastUpdatedBy,jdbcType=BIGINT}
+      </if>
+            <if test="updateTime != null" >
+        and `update_time` = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+          </where>
+  </select>
+
+    <select id="selectPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role where 1 = 1 
+        <if test="role.id != null" >
+      and `id` = #{role.id,jdbcType=BIGINT}
+    </if>
+        <if test="role.cnName != null" >
+      and `cn_name` = #{role.cnName,jdbcType=VARCHAR}
+    </if>
+        <if test="role.enName != null" >
+      and `en_name` = #{role.enName,jdbcType=VARCHAR}
+    </if>
+        <if test="role.roleCode != null" >
+      and `role_code` = #{role.roleCode,jdbcType=VARCHAR}
+    </if>
+        <if test="role.status != null" >
+      and `status` = #{role.status,jdbcType=INTEGER}
+    </if>
+        <if test="role.remark != null" >
+      and `remark` = #{role.remark,jdbcType=VARCHAR}
+    </if>
+        <if test="role.createdBy != null" >
+      and `created_by` = #{role.createdBy,jdbcType=BIGINT}
+    </if>
+        <if test="role.createTime != null" >
+      and `create_time` = #{role.createTime,jdbcType=TIMESTAMP}
+    </if>
+        <if test="role.lastUpdatedBy != null" >
+      and `last_updated_by` = #{role.lastUpdatedBy,jdbcType=BIGINT}
+    </if>
+        <if test="role.updateTime != null" >
+      and `update_time` = #{role.updateTime,jdbcType=TIMESTAMP}
+    </if>
+        <if test="pageable.sort != null" >
+      order by 
+      <foreach collection="pageable.sort" item="order" separator="," >
+        <if test="
+   order.property == 'id' 
+   || order.property == 'cn_name'
+   || order.property == 'en_name'
+   || order.property == 'role_code'
+   || order.property == 'status'
+   || order.property == 'remark'
+   || order.property == 'created_by'
+   || order.property == 'create_time'
+   || order.property == 'last_updated_by'
+   || order.property == 'update_time'
+        " >
+        		${order.property} ${order.direction}
+        </if>
+      </foreach>
+    </if>
+    <if test="pageable.offset >= 0 and pageable.pageSize > 0" >
+      limit ${pageable.offset}, ${pageable.pageSize}
+    </if>
+  </select>
+ </mapper>
+  
+
+  
+	

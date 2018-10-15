@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianwenad.storage.sys.UserRepository" >
+  <resultMap id="BaseResultMap" type="com.qianwenad.model.sys.User" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="brand_id" property="brandId" jdbcType="BIGINT" />
+    <result column="phone_no" property="phoneNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+ <sql id="Base_Column_List" >
+   `id`,
+   `user_name`,
+   `real_name`,
+   `sex`,
+   `birthday`,
+   `email`,
+   `brand_id`,
+   `phone_no`,
+   `status`,
+   `create_time`
+ </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.qianwenad.model.sys.User" >
+    insert into sys_user ( 
+     `id`,
+     `user_name`,
+     `real_name`,
+     `sex`,
+     `birthday`,
+     `email`,
+     `brand_id`,
+     `phone_no`,
+     `status`,
+     `create_time`
+    )
+    values (
+     #{id,jdbcType=BIGINT},
+     #{userName,jdbcType=VARCHAR},
+     #{realName,jdbcType=VARCHAR},
+     #{sex,jdbcType=INTEGER},
+     #{birthday,jdbcType=TIMESTAMP},
+     #{email,jdbcType=VARCHAR},
+     #{brandId,jdbcType=BIGINT},
+     #{phoneNo,jdbcType=VARCHAR},
+     #{status,jdbcType=INTEGER},
+     #{createTime,jdbcType=TIMESTAMP}
+ )
+  </insert>
+  
+  
+  
+  <insert id="insertSelective" parameterType="com.qianwenad.model.sys.User" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        `id`,
+      </if>
+      <if test="userName != null" >
+        `user_name`,
+      </if>
+      <if test="realName != null" >
+        `real_name`,
+      </if>
+      <if test="sex != null" >
+        `sex`,
+      </if>
+      <if test="birthday != null" >
+        `birthday`,
+      </if>
+      <if test="email != null" >
+        `email`,
+      </if>
+      <if test="brandId != null" >
+        `brand_id`,
+      </if>
+      <if test="phoneNo != null" >
+        `phone_no`,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="createTime != null" >
+        `create_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="phoneNo != null" >
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianwenad.model.sys.User" >
+    update sys_user
+	  <set>
+       <if test="userName != null" >
+        `user_name`= #{userName,jdbcType=VARCHAR},
+       </if>
+       <if test="realName != null" >
+        `real_name`= #{realName,jdbcType=VARCHAR},
+       </if>
+       <if test="sex != null" >
+        `sex`= #{sex,jdbcType=INTEGER},
+       </if>
+       <if test="birthday != null" >
+        `birthday`= #{birthday,jdbcType=TIMESTAMP},
+       </if>
+       <if test="email != null" >
+        `email`= #{email,jdbcType=VARCHAR},
+       </if>
+       <if test="brandId != null" >
+        `brand_id`= #{brandId,jdbcType=BIGINT},
+       </if>
+       <if test="phoneNo != null" >
+        `phone_no`= #{phoneNo,jdbcType=VARCHAR},
+       </if>
+       <if test="status != null" >
+        `status`= #{status,jdbcType=INTEGER},
+       </if>
+       <if test="createTime != null" >
+        `create_time`= #{createTime,jdbcType=TIMESTAMP},
+       </if>
+          </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.qianwenad.model.sys.User" >
+    update sys_user
+    set 
+       `user_name` = #{userName,jdbcType=VARCHAR},
+       `real_name` = #{realName,jdbcType=VARCHAR},
+       `sex` = #{sex,jdbcType=INTEGER},
+       `birthday` = #{birthday,jdbcType=TIMESTAMP},
+       `email` = #{email,jdbcType=VARCHAR},
+       `brand_id` = #{brandId,jdbcType=BIGINT},
+       `phone_no` = #{phoneNo,jdbcType=VARCHAR},
+       `status` = #{status,jdbcType=INTEGER},
+       `create_time` = #{createTime,jdbcType=TIMESTAMP}
+     where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+
+  
+  <select id="selectCount" resultType="java.lang.Integer" parameterType="com.qianwenad.model.sys.User" >
+    select count(*) from sys_user
+    <where >
+            <if test="id != null" >
+        and `id` = #{id,jdbcType=BIGINT}
+      </if>
+            <if test="userName != null" >
+        and `user_name` = #{userName,jdbcType=VARCHAR}
+      </if>
+            <if test="realName != null" >
+        and `real_name` = #{realName,jdbcType=VARCHAR}
+      </if>
+            <if test="sex != null" >
+        and `sex` = #{sex,jdbcType=INTEGER}
+      </if>
+            <if test="birthday != null" >
+        and `birthday` = #{birthday,jdbcType=TIMESTAMP}
+      </if>
+            <if test="email != null" >
+        and `email` = #{email,jdbcType=VARCHAR}
+      </if>
+            <if test="brandId != null" >
+        and `brand_id` = #{brandId,jdbcType=BIGINT}
+      </if>
+            <if test="phoneNo != null" >
+        and `phone_no` = #{phoneNo,jdbcType=VARCHAR}
+      </if>
+            <if test="status != null" >
+        and `status` = #{status,jdbcType=INTEGER}
+      </if>
+            <if test="createTime != null" >
+        and `create_time` = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+          </where>
+  </select>
+
+    <select id="selectPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user where 1 = 1 
+        <if test="user.id != null" >
+      and `id` = #{user.id,jdbcType=BIGINT}
+    </if>
+        <if test="user.userName != null" >
+      and `user_name` = #{user.userName,jdbcType=VARCHAR}
+    </if>
+        <if test="user.realName != null" >
+      and `real_name` = #{user.realName,jdbcType=VARCHAR}
+    </if>
+        <if test="user.sex != null" >
+      and `sex` = #{user.sex,jdbcType=INTEGER}
+    </if>
+        <if test="user.birthday != null" >
+      and `birthday` = #{user.birthday,jdbcType=TIMESTAMP}
+    </if>
+        <if test="user.email != null" >
+      and `email` = #{user.email,jdbcType=VARCHAR}
+    </if>
+        <if test="user.brandId != null" >
+      and `brand_id` = #{user.brandId,jdbcType=BIGINT}
+    </if>
+        <if test="user.phoneNo != null" >
+      and `phone_no` = #{user.phoneNo,jdbcType=VARCHAR}
+    </if>
+        <if test="user.status != null" >
+      and `status` = #{user.status,jdbcType=INTEGER}
+    </if>
+        <if test="user.createTime != null" >
+      and `create_time` = #{user.createTime,jdbcType=TIMESTAMP}
+    </if>
+        <if test="pageable.sort != null" >
+      order by 
+      <foreach collection="pageable.sort" item="order" separator="," >
+        <if test="
+   order.property == 'id' 
+   || order.property == 'user_name'
+   || order.property == 'real_name'
+   || order.property == 'sex'
+   || order.property == 'birthday'
+   || order.property == 'email'
+   || order.property == 'brand_id'
+   || order.property == 'phone_no'
+   || order.property == 'status'
+   || order.property == 'create_time'
+        " >
+        		${order.property} ${order.direction}
+        </if>
+      </foreach>
+    </if>
+    <if test="pageable.offset >= 0 and pageable.pageSize > 0" >
+      limit ${pageable.offset}, ${pageable.pageSize}
+    </if>
+  </select>
+ </mapper>
+  
+
+  
+	

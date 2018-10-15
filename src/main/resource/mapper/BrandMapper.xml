@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianwenad.storage.product.BrandRepository" >
+  <resultMap id="BaseResultMap" type="com.qianwenad.model.product.Brand" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+    <result column="brand_code" property="brandCode" jdbcType="VARCHAR" />
+    <result column="brand_desc" property="brandDesc" jdbcType="VARCHAR" />
+    <result column="brand_type" property="brandType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+ <sql id="Base_Column_List" >
+   `id`,
+   `brand_name`,
+   `brand_code`,
+   `brand_desc`,
+   `brand_type`,
+   `status`,
+   `create_time`,
+   `update_time`
+ </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from qw_brand
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from qw_brand
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.qianwenad.model.product.Brand" >
+    insert into qw_brand ( 
+     `id`,
+     `brand_name`,
+     `brand_code`,
+     `brand_desc`,
+     `brand_type`,
+     `status`,
+     `create_time`,
+     `update_time`
+    )
+    values (
+     #{id,jdbcType=BIGINT},
+     #{brandName,jdbcType=VARCHAR},
+     #{brandCode,jdbcType=VARCHAR},
+     #{brandDesc,jdbcType=VARCHAR},
+     #{brandType,jdbcType=INTEGER},
+     #{status,jdbcType=INTEGER},
+     #{createTime,jdbcType=TIMESTAMP},
+     #{updateTime,jdbcType=TIMESTAMP}
+ )
+  </insert>
+  
+  
+  
+  <insert id="insertSelective" parameterType="com.qianwenad.model.product.Brand" >
+    insert into qw_brand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        `id`,
+      </if>
+      <if test="brandName != null" >
+        `brand_name`,
+      </if>
+      <if test="brandCode != null" >
+        `brand_code`,
+      </if>
+      <if test="brandDesc != null" >
+        `brand_desc`,
+      </if>
+      <if test="brandType != null" >
+        `brand_type`,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="createTime != null" >
+        `create_time`,
+      </if>
+      <if test="updateTime != null" >
+        `update_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandCode != null" >
+        #{brandCode,jdbcType=VARCHAR},
+      </if>
+      <if test="brandDesc != null" >
+        #{brandDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="brandType != null" >
+        #{brandType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianwenad.model.product.Brand" >
+    update qw_brand
+	  <set>
+       <if test="brandName != null" >
+        `brand_name`= #{brandName,jdbcType=VARCHAR},
+       </if>
+       <if test="brandCode != null" >
+        `brand_code`= #{brandCode,jdbcType=VARCHAR},
+       </if>
+       <if test="brandDesc != null" >
+        `brand_desc`= #{brandDesc,jdbcType=VARCHAR},
+       </if>
+       <if test="brandType != null" >
+        `brand_type`= #{brandType,jdbcType=INTEGER},
+       </if>
+       <if test="status != null" >
+        `status`= #{status,jdbcType=INTEGER},
+       </if>
+       <if test="createTime != null" >
+        `create_time`= #{createTime,jdbcType=TIMESTAMP},
+       </if>
+       <if test="updateTime != null" >
+        `update_time`= #{updateTime,jdbcType=TIMESTAMP},
+       </if>
+          </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.qianwenad.model.product.Brand" >
+    update qw_brand
+    set 
+       `brand_name` = #{brandName,jdbcType=VARCHAR},
+       `brand_code` = #{brandCode,jdbcType=VARCHAR},
+       `brand_desc` = #{brandDesc,jdbcType=VARCHAR},
+       `brand_type` = #{brandType,jdbcType=INTEGER},
+       `status` = #{status,jdbcType=INTEGER},
+       `create_time` = #{createTime,jdbcType=TIMESTAMP},
+       `update_time` = #{updateTime,jdbcType=TIMESTAMP}
+     where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+
+  
+  <select id="selectCount" resultType="java.lang.Integer" parameterType="com.qianwenad.model.product.Brand" >
+    select count(*) from qw_brand
+    <where >
+            <if test="id != null" >
+        and `id` = #{id,jdbcType=BIGINT}
+      </if>
+            <if test="brandName != null" >
+        and `brand_name` = #{brandName,jdbcType=VARCHAR}
+      </if>
+            <if test="brandCode != null" >
+        and `brand_code` = #{brandCode,jdbcType=VARCHAR}
+      </if>
+            <if test="brandDesc != null" >
+        and `brand_desc` = #{brandDesc,jdbcType=VARCHAR}
+      </if>
+            <if test="brandType != null" >
+        and `brand_type` = #{brandType,jdbcType=INTEGER}
+      </if>
+            <if test="status != null" >
+        and `status` = #{status,jdbcType=INTEGER}
+      </if>
+            <if test="createTime != null" >
+        and `create_time` = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+            <if test="updateTime != null" >
+        and `update_time` = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+          </where>
+  </select>
+
+    <select id="selectPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from qw_brand where 1 = 1 
+        <if test="brand.id != null" >
+      and `id` = #{brand.id,jdbcType=BIGINT}
+    </if>
+        <if test="brand.brandName != null" >
+      and `brand_name` = #{brand.brandName,jdbcType=VARCHAR}
+    </if>
+        <if test="brand.brandCode != null" >
+      and `brand_code` = #{brand.brandCode,jdbcType=VARCHAR}
+    </if>
+        <if test="brand.brandDesc != null" >
+      and `brand_desc` = #{brand.brandDesc,jdbcType=VARCHAR}
+    </if>
+        <if test="brand.brandType != null" >
+      and `brand_type` = #{brand.brandType,jdbcType=INTEGER}
+    </if>
+        <if test="brand.status != null" >
+      and `status` = #{brand.status,jdbcType=INTEGER}
+    </if>
+        <if test="brand.createTime != null" >
+      and `create_time` = #{brand.createTime,jdbcType=TIMESTAMP}
+    </if>
+        <if test="brand.updateTime != null" >
+      and `update_time` = #{brand.updateTime,jdbcType=TIMESTAMP}
+    </if>
+        <if test="pageable.sort != null" >
+      order by 
+      <foreach collection="pageable.sort" item="order" separator="," >
+        <if test="
+   order.property == 'id' 
+   || order.property == 'brand_name'
+   || order.property == 'brand_code'
+   || order.property == 'brand_desc'
+   || order.property == 'brand_type'
+   || order.property == 'status'
+   || order.property == 'create_time'
+   || order.property == 'update_time'
+        " >
+        		${order.property} ${order.direction}
+        </if>
+      </foreach>
+    </if>
+    <if test="pageable.offset >= 0 and pageable.pageSize > 0" >
+      limit ${pageable.offset}, ${pageable.pageSize}
+    </if>
+  </select>
+ </mapper>
+  
+
+  
+	

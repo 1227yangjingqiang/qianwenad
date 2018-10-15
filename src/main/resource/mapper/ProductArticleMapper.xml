@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianwenad.storage.product.ProductArticleRepository" >
+  <resultMap id="BaseResultMap" type="com.qianwenad.model.product.ProductArticle" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="article_type" property="articleType" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="brand_id" property="brandId" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="sub_title" property="subTitle" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="updated_by" property="updatedBy" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+ <sql id="Base_Column_List" >
+   `id`,
+   `product_id`,
+   `product_name`,
+   `article_type`,
+   `category_id`,
+   `brand_id`,
+   `title`,
+   `sub_title`,
+   `content`,
+   `type`,
+   `status`,
+   `image_url`,
+   `created_by`,
+   `updated_by`,
+   `create_time`,
+   `update_time`
+ </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from qw_product_article
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from qw_product_article
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.qianwenad.model.product.ProductArticle" >
+    insert into qw_product_article ( 
+     `id`,
+     `product_id`,
+     `product_name`,
+     `article_type`,
+     `category_id`,
+     `brand_id`,
+     `title`,
+     `sub_title`,
+     `content`,
+     `type`,
+     `status`,
+     `image_url`,
+     `created_by`,
+     `updated_by`,
+     `create_time`,
+     `update_time`
+    )
+    values (
+     #{id,jdbcType=BIGINT},
+     #{productId,jdbcType=BIGINT},
+     #{productName,jdbcType=VARCHAR},
+     #{articleType,jdbcType=VARCHAR},
+     #{categoryId,jdbcType=BIGINT},
+     #{brandId,jdbcType=BIGINT},
+     #{title,jdbcType=VARCHAR},
+     #{subTitle,jdbcType=VARCHAR},
+     #{content,jdbcType=VARCHAR},
+     #{type,jdbcType=INTEGER},
+     #{status,jdbcType=INTEGER},
+     #{imageUrl,jdbcType=VARCHAR},
+     #{createdBy,jdbcType=BIGINT},
+     #{updatedBy,jdbcType=BIGINT},
+     #{createTime,jdbcType=TIMESTAMP},
+     #{updateTime,jdbcType=TIMESTAMP}
+ )
+  </insert>
+  
+  
+  
+  <insert id="insertSelective" parameterType="com.qianwenad.model.product.ProductArticle" >
+    insert into qw_product_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        `id`,
+      </if>
+      <if test="productId != null" >
+        `product_id`,
+      </if>
+      <if test="productName != null" >
+        `product_name`,
+      </if>
+      <if test="articleType != null" >
+        `article_type`,
+      </if>
+      <if test="categoryId != null" >
+        `category_id`,
+      </if>
+      <if test="brandId != null" >
+        `brand_id`,
+      </if>
+      <if test="title != null" >
+        `title`,
+      </if>
+      <if test="subTitle != null" >
+        `sub_title`,
+      </if>
+      <if test="content != null" >
+        `content`,
+      </if>
+      <if test="type != null" >
+        `type`,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="imageUrl != null" >
+        `image_url`,
+      </if>
+      <if test="createdBy != null" >
+        `created_by`,
+      </if>
+      <if test="updatedBy != null" >
+        `updated_by`,
+      </if>
+      <if test="createTime != null" >
+        `create_time`,
+      </if>
+      <if test="updateTime != null" >
+        `update_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="articleType != null" >
+        #{articleType,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null" >
+        #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianwenad.model.product.ProductArticle" >
+    update qw_product_article
+	  <set>
+       <if test="productId != null" >
+        `product_id`= #{productId,jdbcType=BIGINT},
+       </if>
+       <if test="productName != null" >
+        `product_name`= #{productName,jdbcType=VARCHAR},
+       </if>
+       <if test="articleType != null" >
+        `article_type`= #{articleType,jdbcType=VARCHAR},
+       </if>
+       <if test="categoryId != null" >
+        `category_id`= #{categoryId,jdbcType=BIGINT},
+       </if>
+       <if test="brandId != null" >
+        `brand_id`= #{brandId,jdbcType=BIGINT},
+       </if>
+       <if test="title != null" >
+        `title`= #{title,jdbcType=VARCHAR},
+       </if>
+       <if test="subTitle != null" >
+        `sub_title`= #{subTitle,jdbcType=VARCHAR},
+       </if>
+       <if test="content != null" >
+        `content`= #{content,jdbcType=VARCHAR},
+       </if>
+       <if test="type != null" >
+        `type`= #{type,jdbcType=INTEGER},
+       </if>
+       <if test="status != null" >
+        `status`= #{status,jdbcType=INTEGER},
+       </if>
+       <if test="imageUrl != null" >
+        `image_url`= #{imageUrl,jdbcType=VARCHAR},
+       </if>
+       <if test="createdBy != null" >
+        `created_by`= #{createdBy,jdbcType=BIGINT},
+       </if>
+       <if test="updatedBy != null" >
+        `updated_by`= #{updatedBy,jdbcType=BIGINT},
+       </if>
+       <if test="createTime != null" >
+        `create_time`= #{createTime,jdbcType=TIMESTAMP},
+       </if>
+       <if test="updateTime != null" >
+        `update_time`= #{updateTime,jdbcType=TIMESTAMP},
+       </if>
+          </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.qianwenad.model.product.ProductArticle" >
+    update qw_product_article
+    set 
+       `product_id` = #{productId,jdbcType=BIGINT},
+       `product_name` = #{productName,jdbcType=VARCHAR},
+       `article_type` = #{articleType,jdbcType=VARCHAR},
+       `category_id` = #{categoryId,jdbcType=BIGINT},
+       `brand_id` = #{brandId,jdbcType=BIGINT},
+       `title` = #{title,jdbcType=VARCHAR},
+       `sub_title` = #{subTitle,jdbcType=VARCHAR},
+       `content` = #{content,jdbcType=VARCHAR},
+       `type` = #{type,jdbcType=INTEGER},
+       `status` = #{status,jdbcType=INTEGER},
+       `image_url` = #{imageUrl,jdbcType=VARCHAR},
+       `created_by` = #{createdBy,jdbcType=BIGINT},
+       `updated_by` = #{updatedBy,jdbcType=BIGINT},
+       `create_time` = #{createTime,jdbcType=TIMESTAMP},
+       `update_time` = #{updateTime,jdbcType=TIMESTAMP}
+     where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+
+  
+  <select id="selectCount" resultType="java.lang.Integer" parameterType="com.qianwenad.model.product.ProductArticle" >
+    select count(*) from qw_product_article
+    <where >
+            <if test="id != null" >
+        and `id` = #{id,jdbcType=BIGINT}
+      </if>
+            <if test="productId != null" >
+        and `product_id` = #{productId,jdbcType=BIGINT}
+      </if>
+            <if test="productName != null" >
+        and `product_name` = #{productName,jdbcType=VARCHAR}
+      </if>
+            <if test="articleType != null" >
+        and `article_type` = #{articleType,jdbcType=VARCHAR}
+      </if>
+            <if test="categoryId != null" >
+        and `category_id` = #{categoryId,jdbcType=BIGINT}
+      </if>
+            <if test="brandId != null" >
+        and `brand_id` = #{brandId,jdbcType=BIGINT}
+      </if>
+            <if test="title != null" >
+        and `title` = #{title,jdbcType=VARCHAR}
+      </if>
+            <if test="subTitle != null" >
+        and `sub_title` = #{subTitle,jdbcType=VARCHAR}
+      </if>
+            <if test="content != null" >
+        and `content` = #{content,jdbcType=VARCHAR}
+      </if>
+            <if test="type != null" >
+        and `type` = #{type,jdbcType=INTEGER}
+      </if>
+            <if test="status != null" >
+        and `status` = #{status,jdbcType=INTEGER}
+      </if>
+            <if test="imageUrl != null" >
+        and `image_url` = #{imageUrl,jdbcType=VARCHAR}
+      </if>
+            <if test="createdBy != null" >
+        and `created_by` = #{createdBy,jdbcType=BIGINT}
+      </if>
+            <if test="updatedBy != null" >
+        and `updated_by` = #{updatedBy,jdbcType=BIGINT}
+      </if>
+            <if test="createTime != null" >
+        and `create_time` = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+            <if test="updateTime != null" >
+        and `update_time` = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+          </where>
+  </select>
+
+    <select id="selectPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from qw_product_article where 1 = 1 
+        <if test="productArticle.id != null" >
+      and `id` = #{productArticle.id,jdbcType=BIGINT}
+    </if>
+        <if test="productArticle.productId != null" >
+      and `product_id` = #{productArticle.productId,jdbcType=BIGINT}
+    </if>
+        <if test="productArticle.productName != null" >
+      and `product_name` = #{productArticle.productName,jdbcType=VARCHAR}
+    </if>
+        <if test="productArticle.articleType != null" >
+      and `article_type` = #{productArticle.articleType,jdbcType=VARCHAR}
+    </if>
+        <if test="productArticle.categoryId != null" >
+      and `category_id` = #{productArticle.categoryId,jdbcType=BIGINT}
+    </if>
+        <if test="productArticle.brandId != null" >
+      and `brand_id` = #{productArticle.brandId,jdbcType=BIGINT}
+    </if>
+        <if test="productArticle.title != null" >
+      and `title` = #{productArticle.title,jdbcType=VARCHAR}
+    </if>
+        <if test="productArticle.subTitle != null" >
+      and `sub_title` = #{productArticle.subTitle,jdbcType=VARCHAR}
+    </if>
+        <if test="productArticle.content != null" >
+      and `content` = #{productArticle.content,jdbcType=VARCHAR}
+    </if>
+        <if test="productArticle.type != null" >
+      and `type` = #{productArticle.type,jdbcType=INTEGER}
+    </if>
+        <if test="productArticle.status != null" >
+      and `status` = #{productArticle.status,jdbcType=INTEGER}
+    </if>
+        <if test="productArticle.imageUrl != null" >
+      and `image_url` = #{productArticle.imageUrl,jdbcType=VARCHAR}
+    </if>
+        <if test="productArticle.createdBy != null" >
+      and `created_by` = #{productArticle.createdBy,jdbcType=BIGINT}
+    </if>
+        <if test="productArticle.updatedBy != null" >
+      and `updated_by` = #{productArticle.updatedBy,jdbcType=BIGINT}
+    </if>
+        <if test="productArticle.createTime != null" >
+      and `create_time` = #{productArticle.createTime,jdbcType=TIMESTAMP}
+    </if>
+        <if test="productArticle.updateTime != null" >
+      and `update_time` = #{productArticle.updateTime,jdbcType=TIMESTAMP}
+    </if>
+        <if test="pageable.sort != null" >
+      order by 
+      <foreach collection="pageable.sort" item="order" separator="," >
+        <if test="
+   order.property == 'id' 
+   || order.property == 'product_id'
+   || order.property == 'product_name'
+   || order.property == 'article_type'
+   || order.property == 'category_id'
+   || order.property == 'brand_id'
+   || order.property == 'title'
+   || order.property == 'sub_title'
+   || order.property == 'content'
+   || order.property == 'type'
+   || order.property == 'status'
+   || order.property == 'image_url'
+   || order.property == 'created_by'
+   || order.property == 'updated_by'
+   || order.property == 'create_time'
+   || order.property == 'update_time'
+        " >
+        		${order.property} ${order.direction}
+        </if>
+      </foreach>
+    </if>
+    <if test="pageable.offset >= 0 and pageable.pageSize > 0" >
+      limit ${pageable.offset}, ${pageable.pageSize}
+    </if>
+  </select>
+ </mapper>
+  
+
+  
+	

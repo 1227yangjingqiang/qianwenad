@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianwenad.storage.order.OrderItemRepository" >
+  <resultMap id="BaseResultMap" type="com.qianwenad.model.order.OrderItem" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_sn" property="orderSn" jdbcType="VARCHAR" />
+    <result column="order_goods_id" property="orderGoodsId" jdbcType="BIGINT" />
+    <result column="merchandise_no" property="merchandiseNo" jdbcType="BIGINT" />
+    <result column="qty" property="qty" jdbcType="INTEGER" />
+    <result column="back_qty" property="backQty" jdbcType="INTEGER" />
+    <result column="sku" property="sku" jdbcType="VARCHAR" />
+    <result column="brand_id" property="brandId" jdbcType="BIGINT" />
+    <result column="mer_item_no" property="merItemNo" jdbcType="BIGINT" />
+    <result column="sn" property="sn" jdbcType="VARCHAR" />
+    <result column="sell_price" property="sellPrice" jdbcType="VARCHAR" />
+    <result column="goods_type" property="goodsType" jdbcType="INTEGER" />
+    <result column="total_aomunt" property="totalAomunt" jdbcType="INTEGER" />
+    <result column="goods_subtotal" property="goodsSubtotal" jdbcType="VARCHAR" />
+    <result column="ex_act_subtotal" property="exActSubtotal" jdbcType="VARCHAR" />
+    <result column="ex_coupon_sub_total" property="exCouponSubTotal" jdbcType="VARCHAR" />
+    <result column="ex_pay_subtotal" property="exPaySubtotal" jdbcType="VARCHAR" />
+    <result column="ex_all_subtotal" property="exAllSubtotal" jdbcType="VARCHAR" />
+    <result column="order_type" property="orderType" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+ <sql id="Base_Column_List" >
+   `id`,
+   `order_id`,
+   `order_sn`,
+   `order_goods_id`,
+   `merchandise_no`,
+   `qty`,
+   `back_qty`,
+   `sku`,
+   `brand_id`,
+   `mer_item_no`,
+   `sn`,
+   `sell_price`,
+   `goods_type`,
+   `total_aomunt`,
+   `goods_subtotal`,
+   `ex_act_subtotal`,
+   `ex_coupon_sub_total`,
+   `ex_pay_subtotal`,
+   `ex_all_subtotal`,
+   `order_type`,
+   `create_time`,
+   `update_time`
+ </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from qw_order_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from qw_order_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.qianwenad.model.order.OrderItem" >
+    insert into qw_order_item ( 
+     `id`,
+     `order_id`,
+     `order_sn`,
+     `order_goods_id`,
+     `merchandise_no`,
+     `qty`,
+     `back_qty`,
+     `sku`,
+     `brand_id`,
+     `mer_item_no`,
+     `sn`,
+     `sell_price`,
+     `goods_type`,
+     `total_aomunt`,
+     `goods_subtotal`,
+     `ex_act_subtotal`,
+     `ex_coupon_sub_total`,
+     `ex_pay_subtotal`,
+     `ex_all_subtotal`,
+     `order_type`,
+     `create_time`,
+     `update_time`
+    )
+    values (
+     #{id,jdbcType=BIGINT},
+     #{orderId,jdbcType=BIGINT},
+     #{orderSn,jdbcType=VARCHAR},
+     #{orderGoodsId,jdbcType=BIGINT},
+     #{merchandiseNo,jdbcType=BIGINT},
+     #{qty,jdbcType=INTEGER},
+     #{backQty,jdbcType=INTEGER},
+     #{sku,jdbcType=VARCHAR},
+     #{brandId,jdbcType=BIGINT},
+     #{merItemNo,jdbcType=BIGINT},
+     #{sn,jdbcType=VARCHAR},
+     #{sellPrice,jdbcType=VARCHAR},
+     #{goodsType,jdbcType=INTEGER},
+     #{totalAomunt,jdbcType=INTEGER},
+     #{goodsSubtotal,jdbcType=VARCHAR},
+     #{exActSubtotal,jdbcType=VARCHAR},
+     #{exCouponSubTotal,jdbcType=VARCHAR},
+     #{exPaySubtotal,jdbcType=VARCHAR},
+     #{exAllSubtotal,jdbcType=VARCHAR},
+     #{orderType,jdbcType=BIGINT},
+     #{createTime,jdbcType=TIMESTAMP},
+     #{updateTime,jdbcType=TIMESTAMP}
+ )
+  </insert>
+  
+  
+  
+  <insert id="insertSelective" parameterType="com.qianwenad.model.order.OrderItem" >
+    insert into qw_order_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        `id`,
+      </if>
+      <if test="orderId != null" >
+        `order_id`,
+      </if>
+      <if test="orderSn != null" >
+        `order_sn`,
+      </if>
+      <if test="orderGoodsId != null" >
+        `order_goods_id`,
+      </if>
+      <if test="merchandiseNo != null" >
+        `merchandise_no`,
+      </if>
+      <if test="qty != null" >
+        `qty`,
+      </if>
+      <if test="backQty != null" >
+        `back_qty`,
+      </if>
+      <if test="sku != null" >
+        `sku`,
+      </if>
+      <if test="brandId != null" >
+        `brand_id`,
+      </if>
+      <if test="merItemNo != null" >
+        `mer_item_no`,
+      </if>
+      <if test="sn != null" >
+        `sn`,
+      </if>
+      <if test="sellPrice != null" >
+        `sell_price`,
+      </if>
+      <if test="goodsType != null" >
+        `goods_type`,
+      </if>
+      <if test="totalAomunt != null" >
+        `total_aomunt`,
+      </if>
+      <if test="goodsSubtotal != null" >
+        `goods_subtotal`,
+      </if>
+      <if test="exActSubtotal != null" >
+        `ex_act_subtotal`,
+      </if>
+      <if test="exCouponSubTotal != null" >
+        `ex_coupon_sub_total`,
+      </if>
+      <if test="exPaySubtotal != null" >
+        `ex_pay_subtotal`,
+      </if>
+      <if test="exAllSubtotal != null" >
+        `ex_all_subtotal`,
+      </if>
+      <if test="orderType != null" >
+        `order_type`,
+      </if>
+      <if test="createTime != null" >
+        `create_time`,
+      </if>
+      <if test="updateTime != null" >
+        `update_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderSn != null" >
+        #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="orderGoodsId != null" >
+        #{orderGoodsId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseNo != null" >
+        #{merchandiseNo,jdbcType=BIGINT},
+      </if>
+      <if test="qty != null" >
+        #{qty,jdbcType=INTEGER},
+      </if>
+      <if test="backQty != null" >
+        #{backQty,jdbcType=INTEGER},
+      </if>
+      <if test="sku != null" >
+        #{sku,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="merItemNo != null" >
+        #{merItemNo,jdbcType=BIGINT},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="sellPrice != null" >
+        #{sellPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null" >
+        #{goodsType,jdbcType=INTEGER},
+      </if>
+      <if test="totalAomunt != null" >
+        #{totalAomunt,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSubtotal != null" >
+        #{goodsSubtotal,jdbcType=VARCHAR},
+      </if>
+      <if test="exActSubtotal != null" >
+        #{exActSubtotal,jdbcType=VARCHAR},
+      </if>
+      <if test="exCouponSubTotal != null" >
+        #{exCouponSubTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="exPaySubtotal != null" >
+        #{exPaySubtotal,jdbcType=VARCHAR},
+      </if>
+      <if test="exAllSubtotal != null" >
+        #{exAllSubtotal,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianwenad.model.order.OrderItem" >
+    update qw_order_item
+	  <set>
+       <if test="orderId != null" >
+        `order_id`= #{orderId,jdbcType=BIGINT},
+       </if>
+       <if test="orderSn != null" >
+        `order_sn`= #{orderSn,jdbcType=VARCHAR},
+       </if>
+       <if test="orderGoodsId != null" >
+        `order_goods_id`= #{orderGoodsId,jdbcType=BIGINT},
+       </if>
+       <if test="merchandiseNo != null" >
+        `merchandise_no`= #{merchandiseNo,jdbcType=BIGINT},
+       </if>
+       <if test="qty != null" >
+        `qty`= #{qty,jdbcType=INTEGER},
+       </if>
+       <if test="backQty != null" >
+        `back_qty`= #{backQty,jdbcType=INTEGER},
+       </if>
+       <if test="sku != null" >
+        `sku`= #{sku,jdbcType=VARCHAR},
+       </if>
+       <if test="brandId != null" >
+        `brand_id`= #{brandId,jdbcType=BIGINT},
+       </if>
+       <if test="merItemNo != null" >
+        `mer_item_no`= #{merItemNo,jdbcType=BIGINT},
+       </if>
+       <if test="sn != null" >
+        `sn`= #{sn,jdbcType=VARCHAR},
+       </if>
+       <if test="sellPrice != null" >
+        `sell_price`= #{sellPrice,jdbcType=VARCHAR},
+       </if>
+       <if test="goodsType != null" >
+        `goods_type`= #{goodsType,jdbcType=INTEGER},
+       </if>
+       <if test="totalAomunt != null" >
+        `total_aomunt`= #{totalAomunt,jdbcType=INTEGER},
+       </if>
+       <if test="goodsSubtotal != null" >
+        `goods_subtotal`= #{goodsSubtotal,jdbcType=VARCHAR},
+       </if>
+       <if test="exActSubtotal != null" >
+        `ex_act_subtotal`= #{exActSubtotal,jdbcType=VARCHAR},
+       </if>
+       <if test="exCouponSubTotal != null" >
+        `ex_coupon_sub_total`= #{exCouponSubTotal,jdbcType=VARCHAR},
+       </if>
+       <if test="exPaySubtotal != null" >
+        `ex_pay_subtotal`= #{exPaySubtotal,jdbcType=VARCHAR},
+       </if>
+       <if test="exAllSubtotal != null" >
+        `ex_all_subtotal`= #{exAllSubtotal,jdbcType=VARCHAR},
+       </if>
+       <if test="orderType != null" >
+        `order_type`= #{orderType,jdbcType=BIGINT},
+       </if>
+       <if test="createTime != null" >
+        `create_time`= #{createTime,jdbcType=TIMESTAMP},
+       </if>
+       <if test="updateTime != null" >
+        `update_time`= #{updateTime,jdbcType=TIMESTAMP},
+       </if>
+          </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.qianwenad.model.order.OrderItem" >
+    update qw_order_item
+    set 
+       `order_id` = #{orderId,jdbcType=BIGINT},
+       `order_sn` = #{orderSn,jdbcType=VARCHAR},
+       `order_goods_id` = #{orderGoodsId,jdbcType=BIGINT},
+       `merchandise_no` = #{merchandiseNo,jdbcType=BIGINT},
+       `qty` = #{qty,jdbcType=INTEGER},
+       `back_qty` = #{backQty,jdbcType=INTEGER},
+       `sku` = #{sku,jdbcType=VARCHAR},
+       `brand_id` = #{brandId,jdbcType=BIGINT},
+       `mer_item_no` = #{merItemNo,jdbcType=BIGINT},
+       `sn` = #{sn,jdbcType=VARCHAR},
+       `sell_price` = #{sellPrice,jdbcType=VARCHAR},
+       `goods_type` = #{goodsType,jdbcType=INTEGER},
+       `total_aomunt` = #{totalAomunt,jdbcType=INTEGER},
+       `goods_subtotal` = #{goodsSubtotal,jdbcType=VARCHAR},
+       `ex_act_subtotal` = #{exActSubtotal,jdbcType=VARCHAR},
+       `ex_coupon_sub_total` = #{exCouponSubTotal,jdbcType=VARCHAR},
+       `ex_pay_subtotal` = #{exPaySubtotal,jdbcType=VARCHAR},
+       `ex_all_subtotal` = #{exAllSubtotal,jdbcType=VARCHAR},
+       `order_type` = #{orderType,jdbcType=BIGINT},
+       `create_time` = #{createTime,jdbcType=TIMESTAMP},
+       `update_time` = #{updateTime,jdbcType=TIMESTAMP}
+     where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+
+  
+  <select id="selectCount" resultType="java.lang.Integer" parameterType="com.qianwenad.model.order.OrderItem" >
+    select count(*) from qw_order_item
+    <where >
+            <if test="id != null" >
+        and `id` = #{id,jdbcType=BIGINT}
+      </if>
+            <if test="orderId != null" >
+        and `order_id` = #{orderId,jdbcType=BIGINT}
+      </if>
+            <if test="orderSn != null" >
+        and `order_sn` = #{orderSn,jdbcType=VARCHAR}
+      </if>
+            <if test="orderGoodsId != null" >
+        and `order_goods_id` = #{orderGoodsId,jdbcType=BIGINT}
+      </if>
+            <if test="merchandiseNo != null" >
+        and `merchandise_no` = #{merchandiseNo,jdbcType=BIGINT}
+      </if>
+            <if test="qty != null" >
+        and `qty` = #{qty,jdbcType=INTEGER}
+      </if>
+            <if test="backQty != null" >
+        and `back_qty` = #{backQty,jdbcType=INTEGER}
+      </if>
+            <if test="sku != null" >
+        and `sku` = #{sku,jdbcType=VARCHAR}
+      </if>
+            <if test="brandId != null" >
+        and `brand_id` = #{brandId,jdbcType=BIGINT}
+      </if>
+            <if test="merItemNo != null" >
+        and `mer_item_no` = #{merItemNo,jdbcType=BIGINT}
+      </if>
+            <if test="sn != null" >
+        and `sn` = #{sn,jdbcType=VARCHAR}
+      </if>
+            <if test="sellPrice != null" >
+        and `sell_price` = #{sellPrice,jdbcType=VARCHAR}
+      </if>
+            <if test="goodsType != null" >
+        and `goods_type` = #{goodsType,jdbcType=INTEGER}
+      </if>
+            <if test="totalAomunt != null" >
+        and `total_aomunt` = #{totalAomunt,jdbcType=INTEGER}
+      </if>
+            <if test="goodsSubtotal != null" >
+        and `goods_subtotal` = #{goodsSubtotal,jdbcType=VARCHAR}
+      </if>
+            <if test="exActSubtotal != null" >
+        and `ex_act_subtotal` = #{exActSubtotal,jdbcType=VARCHAR}
+      </if>
+            <if test="exCouponSubTotal != null" >
+        and `ex_coupon_sub_total` = #{exCouponSubTotal,jdbcType=VARCHAR}
+      </if>
+            <if test="exPaySubtotal != null" >
+        and `ex_pay_subtotal` = #{exPaySubtotal,jdbcType=VARCHAR}
+      </if>
+            <if test="exAllSubtotal != null" >
+        and `ex_all_subtotal` = #{exAllSubtotal,jdbcType=VARCHAR}
+      </if>
+            <if test="orderType != null" >
+        and `order_type` = #{orderType,jdbcType=BIGINT}
+      </if>
+            <if test="createTime != null" >
+        and `create_time` = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+            <if test="updateTime != null" >
+        and `update_time` = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+          </where>
+  </select>
+
+    <select id="selectPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from qw_order_item where 1 = 1 
+        <if test="orderItem.id != null" >
+      and `id` = #{orderItem.id,jdbcType=BIGINT}
+    </if>
+        <if test="orderItem.orderId != null" >
+      and `order_id` = #{orderItem.orderId,jdbcType=BIGINT}
+    </if>
+        <if test="orderItem.orderSn != null" >
+      and `order_sn` = #{orderItem.orderSn,jdbcType=VARCHAR}
+    </if>
+        <if test="orderItem.orderGoodsId != null" >
+      and `order_goods_id` = #{orderItem.orderGoodsId,jdbcType=BIGINT}
+    </if>
+        <if test="orderItem.merchandiseNo != null" >
+      and `merchandise_no` = #{orderItem.merchandiseNo,jdbcType=BIGINT}
+    </if>
+        <if test="orderItem.qty != null" >
+      and `qty` = #{orderItem.qty,jdbcType=INTEGER}
+    </if>
+        <if test="orderItem.backQty != null" >
+      and `back_qty` = #{orderItem.backQty,jdbcType=INTEGER}
+    </if>
+        <if test="orderItem.sku != null" >
+      and `sku` = #{orderItem.sku,jdbcType=VARCHAR}
+    </if>
+        <if test="orderItem.brandId != null" >
+      and `brand_id` = #{orderItem.brandId,jdbcType=BIGINT}
+    </if>
+        <if test="orderItem.merItemNo != null" >
+      and `mer_item_no` = #{orderItem.merItemNo,jdbcType=BIGINT}
+    </if>
+        <if test="orderItem.sn != null" >
+      and `sn` = #{orderItem.sn,jdbcType=VARCHAR}
+    </if>
+        <if test="orderItem.sellPrice != null" >
+      and `sell_price` = #{orderItem.sellPrice,jdbcType=VARCHAR}
+    </if>
+        <if test="orderItem.goodsType != null" >
+      and `goods_type` = #{orderItem.goodsType,jdbcType=INTEGER}
+    </if>
+        <if test="orderItem.totalAomunt != null" >
+      and `total_aomunt` = #{orderItem.totalAomunt,jdbcType=INTEGER}
+    </if>
+        <if test="orderItem.goodsSubtotal != null" >
+      and `goods_subtotal` = #{orderItem.goodsSubtotal,jdbcType=VARCHAR}
+    </if>
+        <if test="orderItem.exActSubtotal != null" >
+      and `ex_act_subtotal` = #{orderItem.exActSubtotal,jdbcType=VARCHAR}
+    </if>
+        <if test="orderItem.exCouponSubTotal != null" >
+      and `ex_coupon_sub_total` = #{orderItem.exCouponSubTotal,jdbcType=VARCHAR}
+    </if>
+        <if test="orderItem.exPaySubtotal != null" >
+      and `ex_pay_subtotal` = #{orderItem.exPaySubtotal,jdbcType=VARCHAR}
+    </if>
+        <if test="orderItem.exAllSubtotal != null" >
+      and `ex_all_subtotal` = #{orderItem.exAllSubtotal,jdbcType=VARCHAR}
+    </if>
+        <if test="orderItem.orderType != null" >
+      and `order_type` = #{orderItem.orderType,jdbcType=BIGINT}
+    </if>
+        <if test="orderItem.createTime != null" >
+      and `create_time` = #{orderItem.createTime,jdbcType=TIMESTAMP}
+    </if>
+        <if test="orderItem.updateTime != null" >
+      and `update_time` = #{orderItem.updateTime,jdbcType=TIMESTAMP}
+    </if>
+        <if test="pageable.sort != null" >
+      order by 
+      <foreach collection="pageable.sort" item="order" separator="," >
+        <if test="
+   order.property == 'id' 
+   || order.property == 'order_id'
+   || order.property == 'order_sn'
+   || order.property == 'order_goods_id'
+   || order.property == 'merchandise_no'
+   || order.property == 'qty'
+   || order.property == 'back_qty'
+   || order.property == 'sku'
+   || order.property == 'brand_id'
+   || order.property == 'mer_item_no'
+   || order.property == 'sn'
+   || order.property == 'sell_price'
+   || order.property == 'goods_type'
+   || order.property == 'total_aomunt'
+   || order.property == 'goods_subtotal'
+   || order.property == 'ex_act_subtotal'
+   || order.property == 'ex_coupon_sub_total'
+   || order.property == 'ex_pay_subtotal'
+   || order.property == 'ex_all_subtotal'
+   || order.property == 'order_type'
+   || order.property == 'create_time'
+   || order.property == 'update_time'
+        " >
+        		${order.property} ${order.direction}
+        </if>
+      </foreach>
+    </if>
+    <if test="pageable.offset >= 0 and pageable.pageSize > 0" >
+      limit ${pageable.offset}, ${pageable.pageSize}
+    </if>
+  </select>
+ </mapper>
+  
+
+  
+	
