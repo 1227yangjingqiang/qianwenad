@@ -1,7 +1,6 @@
 
 package com.qianwenad.service.product.impl;
 
-import com.qianwenad.common.mapper.BeanMapper;
 import com.qianwenad.model.product.ProductArticle;
 import com.qianwenad.service.product.ProductArticleService;
 import com.qianwenad.storage.product.ProductArticleRepository;
@@ -60,7 +59,7 @@ public class ProductArticleServiceImpl implements ProductArticleService {
 
     @Override
     public List<ProductArticle> selectPage(ProductArticle productArticle, Pageable pageable) {
-        return productArticleRepo.selectPage(productArticle,pageable);
+        return productArticleRepo.selectPage(productArticle, pageable);
     }
 
 
