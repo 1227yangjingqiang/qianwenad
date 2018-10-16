@@ -2,6 +2,9 @@
 package com.qianwenad.service.product;
 
 import com.qianwenad.model.product.ProductArticle;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 public interface ProductArticleService {
 
@@ -20,4 +23,5 @@ public interface ProductArticleService {
 
     public int selectCount(ProductArticle productArticle);
 
+    public List<ProductArticle> selectPage(ProductArticle productArticle, Pageable pageable);
 }

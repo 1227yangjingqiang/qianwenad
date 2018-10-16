@@ -28,4 +28,7 @@ public class ProductArticleVO implements Serializable{
 	private Long updatedBy;
 	private Date createTime;
 	private Date updateTime;
+
+	private Integer page;
+	private Integer pageSize;
 }

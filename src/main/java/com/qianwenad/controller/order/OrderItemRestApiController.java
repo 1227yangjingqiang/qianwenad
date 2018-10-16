@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/api/order/item")
 public class OrderItemRestApiController {
 
     @Autowired
     private OrderItemService orderItemService;
 
-    @RequestMapping(value = "/item/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<ApiResponse> getOrderItemById(@PathVariable Long id) {
         return new ResponseEntity<>(ApiResponse.ok(orderItemService.findByPrimaryKey(id)), HttpStatus.OK);
     }
