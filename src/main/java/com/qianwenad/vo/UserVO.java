@@ -22,4 +22,7 @@ public class UserVO implements Serializable{
 	private String phoneNo;
 	private Integer status;
 	private Date createTime;
+
+	private Integer page = 1;
+	private Integer pageSize = 10;
 }

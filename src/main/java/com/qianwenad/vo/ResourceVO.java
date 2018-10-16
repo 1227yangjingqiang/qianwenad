@@ -27,5 +27,7 @@ public class ResourceVO implements Serializable{
 	private Date createTime;
 	private Long lastUpdatedBy;
 	private Date updateTime;
-		
+
+	private Integer page = 1;
+	private Integer pageSize = 10;
 }

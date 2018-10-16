@@ -17,5 +17,7 @@ public class UserRoleRefVO implements Serializable{
 	private Long roleId;
 	private Long createdBy;
 	private Date createTime;
-		
+
+	private Integer page = 1;
+	private Integer pageSize = 10;
 }

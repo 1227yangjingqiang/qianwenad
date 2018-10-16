@@ -45,6 +45,7 @@ public class AutoMapper {
                 target.add((T) object);
                 mapping(src.get(i), object);
             } catch (Exception e) {
+                log.info("AutoMapper mappingList occur exception ",e);
                 continue;// 某个方法反射异常
             }
         }

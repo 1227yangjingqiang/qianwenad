@@ -17,5 +17,7 @@ public class RoleResourceRefVO implements Serializable{
 	private Long resourceId;
 	private Date createTime;
 	private Long createdBy;
-		
+
+	private Integer page = 1;
+	private Integer pageSize = 10;
 }
